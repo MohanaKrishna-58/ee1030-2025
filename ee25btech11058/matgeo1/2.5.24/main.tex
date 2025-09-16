@@ -1,0 +1,143 @@
+ \let\negmedspace\undefined
+\let\negthickspace\undefined
+\documentclass[journal]{IEEEtran}
+\usepackage[a5paper, margin=10mm, onecolumn]{geometry}
+%\usepackage{lmodern} % Ensure lmodern is loaded for pdflatex
+\usepackage{tfrupee} % Include tfrupee package
+
+\setlength{\headheight}{1cm} % Set the height of the header box
+\setlength{\headsep}{0mm}     % Set the distance between the header box and the top of the text
+
+\usepackage{gvv-book}
+\usepackage{gvv}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{txfonts}
+\usepackage{newtxtext,newtxmath}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{gensymb}
+\usepackage{comment}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{tkz-euclide} 
+\usepackage{listings}
+% \usepackage{gvv}                                        
+\def\inputGnumericTable{}                                 
+\usepackage[latin1]{inputenc}                                
+\usepackage{color}                                            
+\usepackage{array}                                            
+\usepackage{longtable}                                       
+\usepackage{calc}                                             
+\usepackage{multirow}                                         
+\usepackage{hhline}                                           
+\usepackage{ifthen}                                           
+\usepackage{lscape}
+
+\begin{document}
+
+\bibliographystyle{IEEEtran}
+\vspace{3cm}
+
+\title{2.5.24}
+\author{EE25BTECH11058 - Tangellapalli Mohana Krishna Sushma}
+% \maketitle
+% \newpage
+% \bigskip
+{\let\newpage\relax\maketitle}
+
+\renewcommand{\thefigure}{\theenumi}
+\renewcommand{\thetable}{\theenumi}
+\setlength{\intextsep}{10pt} % Space between text and floats
+\textbf{Question}:
+If $|\vec{a}| = 2$, $|\vec{b}| = 7$ and $\vec{a} \times \vec{b} = 3 \hat{i} + 2 \hat{j} + 6 \hat{k}$, find the angle between $\vec{a}$ and $\vec{b}$
+\bigskip
+
+\textbf{Solution}:
+\begin{center}
+$|\vec{a}| = 2, \quad |\vec{b}| = 7, \quad \vec{a} \times \vec{b} = 3\hat{i} + 2\hat{j} + 6\hat{k}$
+\\[1em]
+Let the directions of $\vec{a}$ and $\vec{b}$ be such that
+\end{center}
+
+\begin{flushleft}
+
+\begin{align}
+\vec{a} = (a_1,\, a_2,\, a_3)^{\top}
+\end{align}
+
+\begin{align}
+\vec{b} = (b_1,\, b_2,\, b_3)^{\top}
+\end{align}
+
+\end{flushleft}
+
+\begin{align}
+\vec{a} \times \vec{b} =
+\begin{vmatrix}
+\hat{i} & \hat{j} & \hat{k} \\
+a_1 & a_2 & a_3 \\
+b_1 & b_2 & b_3 \\
+\end{vmatrix}
+\end{align}
+
+\begin{align}
+\vec{a} \times \vec{b} =
+\begin{pmatrix}
+a_2 b_3 - a_3 b_2 \\
+a_3 b_1 - a_1 b_3 \\
+a_1 b_2 - a_2 b_1 \\
+\end{pmatrix}^{\top}
+\end{align}
+
+\hspace{2cm} Given:
+
+\begin{align}
+\vec{a} \times \vec{b} =
+\begin{pmatrix}
+a_2 b_3 - a_3 b_2 \\
+a_3 b_1 - a_1 b_3 \\
+a_1 b_2 - a_2 b_1 \\
+\end{pmatrix}^{\top}
+=
+\begin{pmatrix}
+3 \\
+2 \\
+6 \\
+\end{pmatrix}^{\top}
+\end{align}
+
+\begin{align}
+|\vec{a} \times \vec{b}| = \sqrt{3^2 + 2^2 + 6^2} = \sqrt{9 + 4 + 36} = \sqrt{49} = 7
+\end{align}
+ 
+\begin{align}
+|\vec{a} \times \vec{b}| = |\vec{a}| |\vec{b}| \sin\theta
+\end{align}
+
+\hspace{3cm}$\text{where the angle between } \vec{a} \text{ and } \vec{b} \text{ is } \theta$
+
+
+\begin{align}
+7 = 2 \times 7 \sin\theta \;\Rightarrow\;
+7 = 14 \sin\theta \;\Rightarrow\;
+\sin\theta = \tfrac{1}{2} \;
+\end{align}
+
+\vspace{2cm}
+
+\hspace{2cm} Therefore, the angle between $\vec{a}$ and $\vec{b}$ is $\theta = 30^\circ$
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{figs/fig.png}
+    \caption{A vector diagram showing vectors a, b, and their cross product with a 30\degree~angle}
+    \label{fig:placeholder}
+\end{figure}
+
+
+\end{document}
