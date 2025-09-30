@@ -1,0 +1,10 @@
+\frametitle{Solution 3: Pure Python}
+     \begin{lstlisting}
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.quiver(0, 0, 0, a_norm, 0, 0, color='r', label='a')
+ax.quiver(0, 0, 0, 0, b_norm, 0, color='g', label='b')
+ax.quiver(0, 0, 0, cross_ab[0], cross_ab[1], cross_ab[2], color='b', label='a x b')
+ax.legend()
+plt.show()
+    \end{lstlisting}

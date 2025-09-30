@@ -1,15 +1,7 @@
- \let\negmedspace\undefined
+%iffalse
+\let\negmedspace\undefined
 \let\negthickspace\undefined
-\documentclass[journal]{IEEEtran}
-\usepackage[a5paper, margin=10mm, onecolumn]{geometry}
-%\usepackage{lmodern} % Ensure lmodern is loaded for pdflatex
-\usepackage{tfrupee} % Include tfrupee package
-
-\setlength{\headheight}{1cm} % Set the height of the header box
-\setlength{\headsep}{0mm}     % Set the distance between the header box and the top of the text
-
-\usepackage{gvv-book}
-\usepackage{gvv}
+\documentclass[journal,12pt,onecolumn]{IEEEtran}
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
 \usepackage{algorithmic}
@@ -17,127 +9,100 @@
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{txfonts}
-\usepackage{newtxtext,newtxmath}
 \usepackage{listings}
 \usepackage{enumitem}
 \usepackage{mathtools}
 \usepackage{gensymb}
 \usepackage{comment}
 \usepackage[breaklinks=true]{hyperref}
-\usepackage{tkz-euclide} 
+\usepackage{tkz-euclide}
 \usepackage{listings}
-% \usepackage{gvv}                                        
-\def\inputGnumericTable{}                                 
-\usepackage[latin1]{inputenc}                                
-\usepackage{color}                                            
-\usepackage{array}                                            
-\usepackage{longtable}                                       
-\usepackage{calc}                                             
-\usepackage{multirow}                                         
-\usepackage{hhline}                                           
-\usepackage{ifthen}                                           
+\usepackage{gvv}
+%\def\inputGnumericTable{}
+\usepackage[latin1]{inputenc}
+\usepackage{color}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{calc}
+\usepackage{multirow}
+\usepackage{hhline}
+\usepackage{ifthen}
 \usepackage{lscape}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{multicol}
 
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{problem}{Problem}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}{Example}[section]
+\newtheorem{definition}[problem]{Definition}
+\newcommand{\BEQA}{\begin{eqnarray}}
+\newcommand{\EEQA}{\end{eqnarray}}
+%\newcommand{\define}{\stackrel{\triangle}{=}}
+\theoremstyle{remark}
+%\newtheorem{rem}{Remark}
+
+% Marks the beginning of the document
 \begin{document}
-
 \bibliographystyle{IEEEtran}
 \vspace{3cm}
 
 \title{2.5.24}
-\author{EE25BTECH11058 - Tangellapalli Mohana Krishna Sushma}
-% \maketitle
-% \newpage
-% \bigskip
-{\let\newpage\relax\maketitle}
+\author{EE25BTECH11058 - Mohana Krishna Sushma}
+\maketitle
+
 
 \renewcommand{\thefigure}{\theenumi}
 \renewcommand{\thetable}{\theenumi}
-\setlength{\intextsep}{10pt} % Space between text and floats
-\textbf{Question}:
-If $|\vec{a}| = 2$, $|\vec{b}| = 7$ and $\vec{a} \times \vec{b} = 3 \hat{i} + 2 \hat{j} + 6 \hat{k}$, find the angle between $\vec{a}$ and $\vec{b}$
-\bigskip
 
-\textbf{Solution}:
-\begin{center}
-$|\vec{a}| = 2, \quad |\vec{b}| = 7, \quad \vec{a} \times \vec{b} = 3\hat{i} + 2\hat{j} + 6\hat{k}$
-\\[1em]
-Let the directions of $\vec{a}$ and $\vec{b}$ be such that
-\end{center}
+\textbf{Question:}\par
+If $|\vec{a}| = 2$, $|\vec{b}| = 7$ and $\vec{a} \times \vec{b} = 3\hat{\imath} + 2\hat{\jmath} + 6\hat{k}$, find the angle between $\vec{a}$ and $\vec{b}$. \par
+\textbf{Solution:}\par
 
-\begin{flushleft}
-
+Let the vector $\vec{c} = \vec{a} \times \vec{b}$. We are given:
 \begin{align}
-\vec{a} = (a_1,\, a_2,\, a_3)^{\top}
+    \norm{\vec{a}} &= 2 \\
+    \norm{\vec{b}} &= 7 \\
+    \vec{c} &= \myvec{3 \\ 2 \\ 6}
 \end{align}
-
+The squared magnitude of a vector $\vec{v}$ can be found using the matrix product $\vec{v}^\top\vec{v}$.
+We calculate the squared magnitude of $\vec{c}$:
 \begin{align}
-\vec{b} = (b_1,\, b_2,\, b_3)^{\top}
+    \norm{\vec{c}}^2 &= \vec{c}^\top\vec{c} \\
+    &= \myvec{3 & 2 & 6} \myvec{3 \\ 2 \\ 6} \\
+    &= (3)(3) + (2)(2) + (6)(6) \\
+    &= 9 + 4 + 36 \\
+    &= 49
 \end{align}
-
-\end{flushleft}
-
+Therefore, the magnitude of $\vec{c}$ is:
 \begin{align}
-\vec{a} \times \vec{b} =
-\begin{vmatrix}
-\hat{i} & \hat{j} & \hat{k} \\
-a_1 & a_2 & a_3 \\
-b_1 & b_2 & b_3 \\
-\end{vmatrix}
+    \norm{\vec{c}} = \sqrt{49} = 7
 \end{align}
-
+The magnitude of the cross product is also defined by the relation:
 \begin{align}
-\vec{a} \times \vec{b} =
-\begin{pmatrix}
-a_2 b_3 - a_3 b_2 \\
-a_3 b_1 - a_1 b_3 \\
-a_1 b_2 - a_2 b_1 \\
-\end{pmatrix}^{\top}
+    \norm{\vec{c}} = \norm{\vec{a} \times \vec{b}} = \norm{\vec{a}}\norm{\vec{b}}\sin(\theta)
 \end{align}
-
-\hspace{2cm} Given:
-
+where $\theta$ is the angle between $\vec{a}$ and $\vec{b}$. Substituting the known values:
 \begin{align}
-\vec{a} \times \vec{b} =
-\begin{pmatrix}
-a_2 b_3 - a_3 b_2 \\
-a_3 b_1 - a_1 b_3 \\
-a_1 b_2 - a_2 b_1 \\
-\end{pmatrix}^{\top}
-=
-\begin{pmatrix}
-3 \\
-2 \\
-6 \\
-\end{pmatrix}^{\top}
+    7 &= (2)(7)\sin(\theta) \\
+    7 &= 14\sin(\theta)
 \end{align}
-
+Solving for $\sin(\theta)$:
 \begin{align}
-|\vec{a} \times \vec{b}| = \sqrt{3^2 + 2^2 + 6^2} = \sqrt{9 + 4 + 36} = \sqrt{49} = 7
+    \sin(\theta) = \frac{7}{14} = \frac{1}{2}
 \end{align}
- 
+This implies that the angle $\theta$ is:
 \begin{align}
-|\vec{a} \times \vec{b}| = |\vec{a}| |\vec{b}| \sin\theta
+    \theta = \arcsin\left(\frac{1}{2}\right) = \frac{\pi}{6} \text{ or } 30\degree
 \end{align}
-
-\hspace{3cm}$\text{where the angle between } \vec{a} \text{ and } \vec{b} \text{ is } \theta$
-
-
-\begin{align}
-7 = 2 \times 7 \sin\theta \;\Rightarrow\;
-7 = 14 \sin\theta \;\Rightarrow\;
-\sin\theta = \tfrac{1}{2} \;
-\end{align}
-
-\vspace{2cm}
-
-\hspace{2cm} Therefore, the angle between $\vec{a}$ and $\vec{b}$ is $\theta = 30^\circ$
-
-\begin{figure}[H]
+\begin{figure}
     \centering
-    \includegraphics[width=0.8\columnwidth]{figs/fig.png}
-    \caption{A vector diagram showing vectors a, b, and their cross product with a 30\degree~angle}
+    \includegraphics[width=1\linewidth]{figs/fig.png}
     \label{fig:placeholder}
 \end{figure}
-
-
 \end{document}
