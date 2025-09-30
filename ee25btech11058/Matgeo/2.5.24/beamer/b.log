@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2025.9.2)  30 SEP 2025 17:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2025.9.2)  30 SEP 2025 18:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1753,11 +1753,6 @@ dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}]
 
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}]
 
-LaTeX Warning: Reference `eq:cross_product' on page 5 undefined on input line 1
-28.
-
-
-
 [5
 
 ]
@@ -1817,7 +1812,7 @@ File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 [11
 
 ]
-<figs/fig.png, id=349, 803.0pt x 602.25pt>
+<figs/fig.png, id=348, 803.0pt x 602.25pt>
 File: figs/fig.png Graphic file (type png)
 <use figs/fig.png>
 Package pdftex.def Info: figs/fig.png  used on input line 254.
@@ -1841,9 +1836,6 @@ Package pdftex.def Info: figs/fig.png  used on input line 254.
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2020/03/25>
  ***********
-
-
-LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
@@ -1873,10 +1865,10 @@ e/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public
 /lm/lmsso10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/
 texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/l
 mtt10.pfb>
-Output written on b.pdf (12 pages, 277361 bytes).
+Output written on b.pdf (12 pages, 276257 bytes).
 PDF statistics:
- 443 PDF objects out of 1000 (max. 8388607)
- 368 compressed objects within 4 object streams
+ 442 PDF objects out of 1000 (max. 8388607)
+ 367 compressed objects within 4 object streams
  26 named destinations out of 1000 (max. 500000)
  84 words of extra memory for PDF output out of 10000 (max. 10000000)
 
