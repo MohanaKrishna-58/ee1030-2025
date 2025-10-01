@@ -56,12 +56,14 @@
 \author{EE25BTECH11058 - Mohana Krishna Sushma}
 \maketitle
 
-
 \renewcommand{\thefigure}{\theenumi}
 \renewcommand{\thetable}{\theenumi}
 
 \textbf{Question:}\par
-If $|\vec{a}| = 2$, $|\vec{b}| = 7$ and $\vec{a} \times \vec{b} = 3\hat{\imath} + 2\hat{\jmath} + 6\hat{k}$, find the angle between $\vec{a}$ and $\vec{b}$. \par
+If $|\vec{a}| = 2$, $|\vec{b}| = 7$ and $\vec{a} \times \vec{b} = 3\hat{\imath}
++ 2\hat{\jmath} + 6\hat{k}$, find the angle between $\vec{a}$ and $\vec{b}$.
+\par
+
 \textbf{Solution:}\par
 
 Let the vector $\vec{c} = \vec{a} \times \vec{b}$. We are given:
@@ -70,8 +72,8 @@ Let the vector $\vec{c} = \vec{a} \times \vec{b}$. We are given:
     \norm{\vec{b}} &= 7 \\
     \vec{c} &= \myvec{3 \\ 2 \\ 6}
 \end{align}
-The squared magnitude of a vector $\vec{v}$ can be found using the matrix product $\vec{v}^\top\vec{v}$.
-We calculate the squared magnitude of $\vec{c}$:
+
+First, we calculate the squared magnitude of $\vec{c}$ using the matrix product $\vec{c}^\top\vec{c}$:
 \begin{align}
     \norm{\vec{c}}^2 &= \vec{c}^\top\vec{c} \\
     &= \myvec{3 & 2 & 6} \myvec{3 \\ 2 \\ 6} \\
@@ -79,30 +81,53 @@ We calculate the squared magnitude of $\vec{c}$:
     &= 9 + 4 + 36 \\
     &= 49
 \end{align}
-Therefore, the magnitude of $\vec{c}$ is:
+\hspace{1cm}Therefore, the magnitude of $\vec{c}$ is $\norm{\vec{c}} = \sqrt{49} = 7$.
+
+Using Lagrange's identity , 
 \begin{align}
-    \norm{\vec{c}} = \sqrt{49} = 7
+    \norm{\vec{a} \times \vec{b}}^2 + (\vec{a}^\top\vec{b})^2 = \norm{\vec{a}}^2\norm{\vec{b}}^2
 \end{align}
-The magnitude of the cross product is also defined by the relation:
+
+Substituting the magnitudes we have:
 \begin{align}
-    \norm{\vec{c}} = \norm{\vec{a} \times \vec{b}} = \norm{\vec{a}}\norm{\vec{b}}\sin(\theta)
+    \norm{\vec{c}}^2 + (\vec{a}^\top\vec{b})^2 &= (2)^2(7)^2 \\
+    49 + (\vec{a}^\top\vec{b})^2 &= (4)(49) \\
+    49 + (\vec{a}^\top\vec{b})^2 &= 196
 \end{align}
-where $\theta$ is the angle between $\vec{a}$ and $\vec{b}$. Substituting the known values:
+
+Solving for the squared dot product:
 \begin{align}
-    7 &= (2)(7)\sin(\theta) \\
-    7 &= 14\sin(\theta)
+    (\vec{a}^\top\vec{b})^2 = 196 - 49 = 147
 \end{align}
-Solving for $\sin(\theta)$:
+
 \begin{align}
-    \sin(\theta) = \frac{7}{14} = \frac{1}{2}
+    \vec{a}^\top\vec{b} = \sqrt{147} = \sqrt{49 \times 3} = 7\sqrt{3}
 \end{align}
+
+The definition of the dot product in terms of the angle $\theta$ between the vectors:
+\begin{align}
+    \vec{a}^\top\vec{b} = \norm{\vec{a}}\norm{\vec{b}}\cos(\theta)
+\end{align}
+Substituting the known values:
+\begin{align}
+    7\sqrt{3} &= (2)(7)\cos(\theta) \\
+    7\sqrt{3} &= 14\cos(\theta)
+\end{align}
+
+Solving for $\cos(\theta)$:
+\begin{align}
+    \cos(\theta) = \frac{7\sqrt{3}}{14} = \frac{\sqrt{3}}{2}
+\end{align}
+
 This implies that the angle $\theta$ is:
 \begin{align}
     \theta = \frac{\pi}{6} \text{ or } 30\degree
 \end{align}
-\begin{figure}
+
+\begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{figs/fig.png}
+   \includegraphics[width=1\linewidth]{figs/fig.png}
     \label{fig:placeholder}
 \end{figure}
+
 \end{document}

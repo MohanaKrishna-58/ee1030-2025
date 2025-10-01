@@ -80,7 +80,7 @@
 
 \title
 {Vector Angle Calculation}
-\date{September 26, 2025}
+\date{October 1, 2025}
 
 \author
 {Mohana Krishna - EE25BTECH11058}
@@ -91,13 +91,18 @@
 If $|\vec{a}| = 2$, $|\vec{b}| = 7$ and $\vec{a} \times \vec{b} = 3\hat{\imath} + 2\hat{\jmath} + 6\hat{k}$, find the angle between $\vec{a}$ and $\vec{b}$.
 \end{frame}
 
-\begin{frame}{Theoretical Formula}
-The magnitude of the cross product of two vectors is defined by the formula:
+\begin{frame}{Theoretical Identities}
+The solution uses two key identities. First, \textbf{Lagrange's identity}, which relates the cross product and the dot product (represented by transpose notation):
 \begin{equation}
-|\vec{a} \times \vec{b}| = |\vec{a}| |\vec{b}| \sin(\theta)
-\label{eq:cross_product}
+|\vec{a} \times \vec{b}|^2 + (\vec{a}^\top\vec{b})^2 = |\vec{a}|^2 |\vec{b}|^2
+\label{eq:lagrange}
 \end{equation}
-To use this, we first need to calculate the magnitude of the given cross product vector.
+Second, the definition of the dot product using matrix transpose notation:
+\begin{equation}
+\vec{a}^\top\vec{b} = |\vec{a}| |\vec{b}| \cos(\theta)
+\label{eq:dot_product}
+\end{equation}
+We use (\ref{eq:lagrange}) to find the value of $\vec{a}^\top\vec{b}$, and then (\ref{eq:dot_product}) to find the angle $\theta$.
 \end{frame}
 
 \begin{frame}{Solution using Matrices}
@@ -105,26 +110,30 @@ Let the vector $\vec{c} = \vec{a} \times \vec{b}$. We represent it as a column m
 \begin{equation}
 \vec{c} = \myvec{3 \\ 2 \\ 6}
 \end{equation}
-The squared magnitude is found by $\vec{c}^\top\vec{c}$:
+The squared magnitude is found by the matrix product $\vec{c}^\top\vec{c}$:
 \begin{align*}
 \norm{\vec{c}}^2 &= \myvec{3 & 2 & 6} \myvec{3 \\ 2 \\ 6} \\
-&= (3 \cdot 3) + (2 \cdot 2) + (6 \cdot 6) = 9 + 4 + 36 = 49
+&= (3)(3) + (2)(2) + (6)(6) = 9 + 4 + 36 = 49
 \end{align*}
-So, $|\vec{c}| = \sqrt{49} = 7$.
+So, the magnitude is $|\vec{c}| = \sqrt{49} = 7$.
 \end{frame}
 
 \begin{frame}{Finding the Angle}
-Substituting ,
+Using Lagrange's identity with $|\vec{a}|=2$, $|\vec{b}|=7$, and $|\vec{a} \times \vec{b}|=7$:
 \begin{align*}
-|\vec{a} \times \vec{b}| &= |\vec{a}| |\vec{b}| \sin(\theta) \\
-7 &= (2)(7) \sin(\theta) \\
-7 &= 14 \sin(\theta)
+7^2 + (\vec{a}^\top\vec{b})^2 &= (2)^2 (7)^2 \\
+49 + (\vec{a}^\top\vec{b})^2 &= 4 \cdot 49 = 196 \\
+(\vec{a}^\top\vec{b})^2 &= 196 - 49 = 147
 \end{align*}
-Solving for $\sin(\theta)$:
-\begin{equation*}
-\sin(\theta) = \frac{7}{14} = \frac{1}{2}
-\end{equation*}
-Therefore, the angle is $\theta =  30^\circ$ or $\frac{\pi}{6}$ radians.
+Taking the positive root, we find $\vec{a}^\top\vec{b} = \sqrt{147} = 7\sqrt{3}$.
+\vspace{1em}
+Now, using the transpose notation for the dot product:
+\begin{align*}
+\vec{a}^\top\vec{b} &= |\vec{a}| |\vec{b}| \cos(\theta) \\
+7\sqrt{3} &= (2)(7) \cos(\theta) \\
+\cos(\theta) &= \frac{7\sqrt{3}}{14} = \frac{\sqrt{3}}{2}
+\end{align*}
+Therefore, the angle is $\theta = 30^\circ$ or $\frac{\pi}{6}$ radians.
 \end{frame}
 
 
@@ -138,15 +147,18 @@ Therefore, the angle is $\theta =  30^\circ$ or $\frac{\pi}{6}$ radians.
 #define M_PI 3.14159265358979323846
 #endif
 
-double angle_between(double a, double b, double x, double y, double z) {
-    double cross_mag = sqrt(x*x + y*y + z*z);
-    double sin_theta = cross_mag / (a * b);
-    double theta_rad = asin(sin_theta);
+// Calculates angle using Lagrange's identity and the dot product
+double angle_from_cross(double a, double b, double x, double y, double z) {
+    double cross_mag_sq = x*x + y*y + z*z;
+    double dot_prod_sq = (a*a * b*b) - cross_mag_sq;
+    double dot_prod = sqrt(dot_prod_sq);
+    double cos_theta = dot_prod / (a * b);
+    double theta_rad = acos(cos_theta);
     return theta_rad * 180.0 / M_PI;
 }
 
 int main() {
-    double angle = angle_between(2.0, 7.0, 3.0, 2.0, 6.0);
+    double angle = angle_from_cross(2.0, 7.0, 3.0, 2.0, 6.0);
     printf("Angle between a and b = %.2f degrees\n", angle);
     return 0;
 }
@@ -162,10 +174,13 @@ int main() {
 #define M_PI 3.14159265358979323846
 #endif
 
-double angle_between(double a, double b, double x, double y, double z) {
-    double cross_mag = sqrt(x*x + y*y + z*z);
-    double sin_theta = cross_mag / (a * b);
-    double theta_rad = asin(sin_theta);
+// Function to be compiled into a shared library (e.g., vector.so)
+double angle_from_cross_c(double a, double b, double x, double y, double z) {
+    double cross_mag_sq = x*x + y*y + z*z;
+    double dot_prod_sq = (a*a * b*b) - cross_mag_sq;
+    double dot_prod = sqrt(dot_prod_sq);
+    double cos_theta = dot_prod / (a * b);
+    double theta_rad = acos(cos_theta);
     return theta_rad * 180.0 / M_PI;
 }
     \end{lstlisting}
@@ -174,37 +189,34 @@ double angle_between(double a, double b, double x, double y, double z) {
 \begin{frame}[fragile]
     \frametitle{Solution 2: Python + C (The Python Script)}
     \begin{lstlisting}
-import ctypes
+import ctypes, math
 import numpy as np
 import matplotlib.pyplot as plt
-import math
 
+# Load the shared library
 lib = ctypes.CDLL("./vector.so")
-lib.angle_between.argtypes = [ctypes.c_double, ctypes.c_double,
-                            ctypes.c_double, ctypes.c_double, ctypes.c_double]
-lib.angle_between.restype = ctypes.c_double
+# Define C function signature
+lib.angle_from_cross_c.argtypes = [ctypes.c_double, ctypes.c_double,
+                                 ctypes.c_double, ctypes.c_double, ctypes.c_double]
+lib.angle_from_cross_c.restype = ctypes.c_double
 
-a_mag = 2.0
-b_mag = 7.0
+# Input values
+a_mag, b_mag = 2.0, 7.0
 cross = np.array([3.0, 2.0, 6.0])
 
-theta = lib.angle_between(a_mag, b_mag, cross[0], cross[1], cross[2])
-    \end{lstlisting}
-\end{frame}
+# Call the C function
+theta_deg = lib.angle_from_cross_c(a_mag, b_mag, *cross)
+theta_rad = math.radians(theta_deg)
 
-
-\begin{frame}[fragile]
-    \frametitle{Solution 2: Python + C (The Python Script)}
-     \begin{lstlisting}
-a = np.array([a_mag, 0, 0])
-b = np.array([b_mag*math.cos(math.radians(theta)),
-              b_mag*math.sin(math.radians(theta)), 0])
-
+# --- Visualization ---
 fig = plt.figure(figsize=(8,6))
 ax = fig.add_subplot(111, projection='3d')
-ax.quiver(0,0,0, *a, color='r', label='a (|a|=2)')
-ax.quiver(0,0,0, *b, color='b', label='b (|b|=7)')
+a = np.array([a_mag, 0, 0])
+b = np.array([b_mag*math.cos(theta_rad), b_mag*math.sin(theta_rad), 0])
+ax.quiver(0,0,0, *a, color='r', label=f'a (|a|={a_mag})')
+ax.quiver(0,0,0, *b, color='b', label=f'b (|b|={b_mag})')
 ax.quiver(0,0,0, *cross, color='g', label='a x b')
+ax.set_xlabel('X'); ax.set_ylabel('Y'); ax.set_zlabel('Z')
 ax.legend()
 plt.show()
     \end{lstlisting}
@@ -218,29 +230,30 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
-a_norm = 2.0
-b_norm = 7.0
+# Input values
+a_norm, b_norm = 2.0, 7.0
 cross_ab = np.array([3.0, 2.0, 6.0])
 
+# --- Calculation using Lagrange's Identity ---
 cross_norm = np.linalg.norm(cross_ab)
 dot_sq = (a_norm**2) * (b_norm**2) - cross_norm**2
 dot_val = math.sqrt(dot_sq)
 
+# --- Find angle from dot product ---
 cos_theta = dot_val / (a_norm * b_norm)
 theta_rad = math.acos(cos_theta)
 theta_deg = math.degrees(theta_rad)
-    \end{lstlisting}
-\end{frame}
+print(f"Angle is {theta_deg:.2f} degrees")
 
-
-\begin{frame}[fragile]
-    \frametitle{Solution 3: Pure Python}
-     \begin{lstlisting}
+# --- Visualization ---
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
-ax.quiver(0, 0, 0, a_norm, 0, 0, color='r', label='a')
-ax.quiver(0, 0, 0, 0, b_norm, 0, color='g', label='b')
-ax.quiver(0, 0, 0, cross_ab[0], cross_ab[1], cross_ab[2], color='b', label='a x b')
+a_vec = np.array([a_norm, 0, 0])
+b_vec = np.array([b_norm*math.cos(theta_rad), b_norm*math.sin(theta_rad), 0])
+ax.quiver(0,0,0, *a_vec, color='r', label='a')
+ax.quiver(0,0,0, *b_vec, color='g', label='b')
+ax.quiver(0,0,0, *cross_ab, color='b', label='a x b')
+ax.set_xlabel('X'); ax.set_ylabel('Y'); ax.set_zlabel('Z')
 ax.legend()
 plt.show()
     \end{lstlisting}

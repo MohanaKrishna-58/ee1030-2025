@@ -2,27 +2,29 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
-a_norm = 2.0
-b_norm = 7.0
+# Input values
+a_norm, b_norm = 2.0, 7.0
 cross_ab = np.array([3.0, 2.0, 6.0])
 
+# --- Calculation using Lagrange's Identity ---
 cross_norm = np.linalg.norm(cross_ab)
 dot_sq = (a_norm**2) * (b_norm**2) - cross_norm**2
 dot_val = math.sqrt(dot_sq)
 
+# --- Find angle from dot product ---
 cos_theta = dot_val / (a_norm * b_norm)
 theta_rad = math.acos(cos_theta)
 theta_deg = math.degrees(theta_rad)
+print(f"Angle is {theta_deg:.2f} degrees")
 
-print(f"Angle between a and b = {theta_deg:.2f} degrees")
-
+# --- Visualization ---
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
-ax.quiver(0, 0, 0, a_norm, 0, 0, color='r', label='a')
-ax.quiver(0, 0, 0, 0, b_norm, 0, color='g', label='b')
-ax.quiver(0, 0, 0, cross_ab[0], cross_ab[1], cross_ab[2], color='b', label='a×b')
-ax.set_xlim([0, 8])
-ax.set_ylim([0, 8])
-ax.set_zlim([0, 8])
+a_vec = np.array([a_norm, 0, 0])
+b_vec = np.array([b_norm*math.cos(theta_rad), b_norm*math.sin(theta_rad), 0])
+ax.quiver(0,0,0, *a_vec, color='r', label='a')
+ax.quiver(0,0,0, *b_vec, color='g', label='b')
+ax.quiver(0,0,0, *cross_ab, color='b', label='a x b')
+ax.set_xlabel('X'); ax.set_ylabel('Y'); ax.set_zlabel('Z')
 ax.legend()
 plt.show()
